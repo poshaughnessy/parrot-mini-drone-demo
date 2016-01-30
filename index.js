@@ -3,7 +3,8 @@
 const RollingSpider = require('rolling-spider');
 const temporal = require('temporal');
 
-let drone = new RollingSpider({logger: console.log});
+// To see the logs in the console, pass in {logger: console.log}
+let drone = new RollingSpider();
 
 console.log('Connect...');
 drone.connect(function() {
@@ -26,6 +27,13 @@ drone.connect(function() {
           console.log('Take off...');
           drone.takeOff();
           drone.calibrate();
+        }
+      },
+      {
+        delay: 5000,
+        task: function () {
+          console.log('Backflip...');
+          drone.backFlip();
         }
       },
       {
